@@ -19,9 +19,14 @@ public class GamePane extends Pane {
 
     public GamePane() {
         initializeGame();
+        gameLoop();
     }
+
     private void initializeGame(){
+        currentXSpeed= 0;
+        currentYSpeed= 0;
         this.getChildren().clear();
+        bricks.clear();
         stick= new Stick(Config.screenWidth/2 - Config.stickWidth/2, Config.screenHeight - Config.stickHeight);
         ball= new Ball(Config.screenWidth/2, Config.screenHeight - Config.stickHeight - Config.ballRadius);
 
@@ -50,7 +55,6 @@ public class GamePane extends Pane {
                 stick.setMovingRight(false);
         });
         this.getChildren().addAll(ball, stick);
-        gameLoop();
     }
     public void gameLoop(){
         new AnimationTimer(){
@@ -94,6 +98,7 @@ public class GamePane extends Pane {
         if(currentYSpeed >0){
             if(Config.screenHeight <= ball.getCenterY() + ball.getRadius()){
                 start= false;
+                initializeGame();
             }
         }else{
             if(0 >= ball.getCenterY() - ball.getRadius()){
@@ -117,8 +122,11 @@ public class GamePane extends Pane {
                     }else if(ball.getCenterY() >= brick.getY() && ball.getCenterY() <= brick.getY() + brick.getHeight()){
                         currentXSpeed*=-1;
                     }else{
-                        currentXSpeed*=-1;
-                        currentYSpeed*=-1;
+                        if(currentYSpeed > 0){
+                            currentXSpeed*=-1;
+                        }else{
+                            currentYSpeed*=-1;
+                        }
                     }
                 }else{
                     break;
