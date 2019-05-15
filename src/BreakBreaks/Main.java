@@ -2,8 +2,10 @@ package BreakBreaks;
 
 import BreakBreaks.Game.GamePane;
 import BreakBreaks.Game.GameScene;
-import BreakBreaks.MainMenu.MainMenuPane;
-import BreakBreaks.MainMenu.MainMenuScene;
+import BreakBreaks.Interface.MainMenuPane;
+import BreakBreaks.Interface.MainMenuScene;
+import BreakBreaks.Interface.HighestScores;
+import BreakBreaks.Interface.HighestScoresScene;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -19,10 +21,24 @@ public class Main extends Application {
         GamePane gamePane= new GamePane();
         GameScene gameScene= new GameScene(gamePane, primaryStage, Config.screenWidth, Config.screenHeight);
 
-        MainMenuPane mainMenuPane= new MainMenuPane();
-        MainMenuScene mainMenuScene= new MainMenuScene(mainMenuPane, primaryStage);
+        HighestScores highestScores = new HighestScores(primaryStage);
+        HighestScoresScene highestScoresScene = new HighestScoresScene(highestScores);
 
-        primaryStage.setScene(gameScene);
+
+        MainMenuPane mainMenuPane= new MainMenuPane(primaryStage,gameScene);
+        MainMenuScene mainMenuScene= new MainMenuScene(mainMenuPane);
+
+        //mainMenuPane.backgroundMusic();
+
+        //Set Stage
+        highestScoresScene.setStage(primaryStage);
+        mainMenuScene.setStage(primaryStage);
+
+        //SetScene
+        highestScoresScene.setMainMenuScene(mainMenuScene);
+        mainMenuScene.setOptionsScene(highestScoresScene);
+
+        primaryStage.setScene(mainMenuScene);
         gamePane.requestFocus();
         primaryStage.show();
     }

@@ -1,8 +1,10 @@
 package BreakBreaks.Game;
 
 import BreakBreaks.Config;
+import BreakBreaks.Interface.MainMenuPane;
 import javafx.animation.AnimationTimer;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
@@ -18,6 +20,10 @@ public class GamePane extends Pane {
     private double currentYSpeed;
 
     public GamePane() {
+
+        //Background Picture
+
+
         initializeGame();
         gameLoop();
     }

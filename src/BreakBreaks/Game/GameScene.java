@@ -1,5 +1,6 @@
 package BreakBreaks.Game;
 
+import BreakBreaks.Interface.MainMenuPane;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
