@@ -49,7 +49,7 @@ public class MainMenuPane extends Pane {
         gameTitle.setFont(Config.HemiHeadTitle);
 
         //Gradient Color For Title
-        Stop[] stops = new Stop[] { new Stop(0, Color.valueOf("#E65100")), new Stop(1, Color.valueOf("#EEFF41"))};
+        Stop[] stops = new Stop[] { new Stop(0, Color.valueOf("#845EC2")), new Stop(1, Color.valueOf("#EEFF41"))};
         LinearGradient linearGradient = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, stops);
 
         gameTitle.setFill(linearGradient);

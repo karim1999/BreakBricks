@@ -55,7 +55,7 @@ public class Config {
 
     //Fonts
     public static Font HemiHeadButtons = Font.loadFont("file:Fonts\\hemi head bd.ttf",18);
-    public static Font HemiHeadTitle = Font.loadFont("file:Fonts\\astron boy.ttf",90);
+    public static Font HemiHeadTitle = Font.loadFont("file:Fonts\\Future TimeSplitters.otf",115);
 
     public static Font HighestScoresTitleFont= Font.loadFont("file:Fonts\\astron boy.ttf",70);
 
