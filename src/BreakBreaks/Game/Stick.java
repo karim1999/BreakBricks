@@ -9,11 +9,11 @@ public class Stick extends Rectangle {
     private double speed= 10;
 
     public Stick(double x, double y) {
-        setFill(Config.getStickColor());
-        setWidth(Config.getStickWidth());
-        setHeight(Config.getStickHeight());
-        setArcHeight(Config.getStickArcHeight());
-        setArcWidth(Config.getStickArcWidth());
+        setFill(Config.stickColor);
+        setWidth(Config.stickWidth);
+        setHeight(Config.stickHeight);
+        setArcHeight(Config.stickArcHeight);
+        setArcWidth(Config.stickArcWidth);
         setX(x);
         setY(y);
     }
@@ -32,7 +32,7 @@ public class Stick extends Rectangle {
                 ball.setCenterX(ball.getCenterX() - speed);
             setX(getX() - speed);
         }
-        if(isMovingRight && getX() < Config.getScreenWidth() - Config.stickWidth){
+        if(isMovingRight && getX() < Config.screenWidth - Config.stickWidth){
             if(!start)
                 ball.setCenterX(ball.getCenterX() + speed);
             setX(getX() + speed);

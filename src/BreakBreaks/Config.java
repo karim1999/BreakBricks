@@ -14,47 +14,8 @@ public class Config {
     public static double stickArcHeight= 7;
     public static Color stickColor= Color.RED;
 
-    public static double getStickWidth() {
-        return stickWidth;
-    }
+    //Ball
+    public static double ballRadius= 7;
+    public static Color ballColor= Color.BLACK;
 
-    public static double getStickHeight() {
-        return stickHeight;
-    }
-
-    public static double getStickArcWidth() {
-        return stickArcWidth;
-    }
-
-    public static double getStickArcHeight() {
-        return stickArcHeight;
-    }
-
-    public static Color getStickColor() {
-        return stickColor;
-    }
-
-    public static String getGameTitle() {
-        return gameTitle;
-    }
-
-    public static void setGameTitle(String gameTitle) {
-        Config.gameTitle = gameTitle;
-    }
-
-    public static double getScreenWidth() {
-        return screenWidth;
-    }
-
-    public static void setScreenWidth(double screenWidth) {
-        Config.screenWidth = screenWidth;
-    }
-
-    public static double getScreenHeight() {
-        return screenHeight;
-    }
-
-    public static void setScreenHeight(double screenHeight) {
-        Config.screenHeight = screenHeight;
-    }
 }

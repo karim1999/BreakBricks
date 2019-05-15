@@ -14,10 +14,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage){
-        primaryStage.setTitle(Config.getGameTitle());
+        primaryStage.setTitle(Config.gameTitle);
 
         GamePane gamePane= new GamePane();
-        GameScene gameScene= new GameScene(gamePane, primaryStage, Config.getScreenWidth(), Config.getScreenHeight());
+        GameScene gameScene= new GameScene(gamePane, primaryStage, Config.screenWidth, Config.screenHeight);
 
         MainMenuPane mainMenuPane= new MainMenuPane();
         MainMenuScene mainMenuScene= new MainMenuScene(mainMenuPane, primaryStage);
