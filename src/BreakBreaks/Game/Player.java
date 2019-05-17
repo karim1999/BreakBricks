@@ -43,49 +43,7 @@ public class Player extends Group {
         this.getChildren().addAll(ball, stick);
 
     }
-
-    private void checkBallStickCollision(Ball ball, Stick stick){
-        double x= Config.maxSpeed;
-        double y= -Config.maxSpeed;
-        if(ball.getLayoutBounds().intersects(stick.getLayoutBounds())){
-            double difference= stick.getX() + stick.getWidth()/2 - ball.getCenterX();
-            if(difference > 0){
-                double ratio= difference/(stick.getWidth());
-                ball.currentXSpeed= -x*ratio;
-                ball.currentYSpeed= y*(1-ratio);
-
-            }else if(difference < 0){
-                double ratio= -difference/(stick.getWidth());
-                ball.currentXSpeed= x*ratio;
-                ball.currentYSpeed= y*(1-ratio);
-            }else{
-                ball.currentXSpeed= 0;
-                ball.currentYSpeed= y;
-            }
-        }
-    }
-    private void checkBallFrameCollision(Ball ball, Frame frame){
-        if(ball.currentXSpeed >0){
-            if(frame.getMaxX() <= ball.getCenterX() + ball.getRadius()){
-                ball.currentXSpeed*=-1;
-            }
-        }else{
-            if(frame.getMinX() >= ball.getCenterX() - ball.getRadius()){
-                ball.currentXSpeed*=-1;
-            }
-        }
-        if(ball.currentYSpeed >0){
-            if(frame.getMaxY() <= ball.getCenterY() + ball.getRadius()){
-//                start= false;
-//                initializeGame();
-            }
-        }else{
-            if(frame.getMinY() >= ball.getCenterY() - ball.getRadius()){
-                ball.currentYSpeed*=-1;
-            }
-        }
-    }
-    private void checkBallBricksCollision(Ball ball, ArrayList<Brick> bricks){
+    public void checkBallBricksCollision(Ball ball, ArrayList<Brick> bricks){
         Iterator itr = bricks.iterator();
         boolean isIntersected= false;
         while (itr.hasNext())
@@ -114,6 +72,7 @@ public class Player extends Group {
         }
     }
 
+
     public void play(){
         if(KeyManager.getkeystate(startKey)){
             isPlaying= true;
@@ -140,8 +99,8 @@ public class Player extends Group {
 
         if(isPlaying){
             for (Ball ball : balls){
-                checkBallStickCollision(ball, stick);
-                checkBallFrameCollision(ball, frame);
+                ball.checkBallStickCollision(stick);
+                ball.checkBallFrameCollision(frame);
                 checkBallBricksCollision(ball, bricks);
                 ball.move();
             }

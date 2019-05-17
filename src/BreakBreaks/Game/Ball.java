@@ -15,4 +15,46 @@ public class Ball extends Circle {
         setCenterY(getCenterY() + currentYSpeed);
     }
 
+    public void checkBallStickCollision(Stick stick){
+        double x= Config.maxSpeed;
+        double y= -Config.maxSpeed;
+        if(getLayoutBounds().intersects(stick.getLayoutBounds())){
+            double difference= stick.getX() + stick.getWidth()/2 - getCenterX();
+            if(difference > 0){
+                double ratio= difference/(stick.getWidth());
+                currentXSpeed= -x*ratio;
+                currentYSpeed= y*(1-ratio);
+
+            }else if(difference < 0){
+                double ratio= -difference/(stick.getWidth());
+                currentXSpeed= x*ratio;
+                currentYSpeed= y*(1-ratio);
+            }else{
+                currentXSpeed= 0;
+                currentYSpeed= y;
+            }
+        }
+    }
+    public void checkBallFrameCollision(Frame frame){
+        if(currentXSpeed >0){
+            if(frame.getMaxX() <= getCenterX() + getRadius()){
+                currentXSpeed*=-1;
+            }
+        }else{
+            if(frame.getMinX() >= getCenterX() - getRadius()){
+                currentXSpeed*=-1;
+            }
+        }
+        if(currentYSpeed >0){
+            if(frame.getMaxY() <= getCenterY() + getRadius()){
+//                start= false;
+//                initializeGame();
+            }
+        }else{
+            if(frame.getMinY() >= getCenterY() - getRadius()){
+                currentYSpeed*=-1;
+            }
+        }
+    }
+
 }
