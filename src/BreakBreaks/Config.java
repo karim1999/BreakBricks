@@ -45,6 +45,7 @@ public class Config {
     public static double stickHeight= 15;
     public static double stickArcWidth= 7;
     public static double stickArcHeight= 7;
+    public static double stickSpeed= 10;
     public static Color stickColor= Color.RED;
 
     //Ball
