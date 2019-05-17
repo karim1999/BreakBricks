@@ -47,7 +47,10 @@ public class GamePane extends Pane {
 
         //Move Stick with controllers
         for (int i=0; i < players.length; i++){
-            players[i].play();
+            //Play function returns the score of each player
+            //You can get the status of each player as well by using hasWon, hasLost data members
+            if(!players[i].hasWon && !players[i].hasWon )
+                players[i].play();
         }
     }
 }

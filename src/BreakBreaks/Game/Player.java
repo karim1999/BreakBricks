@@ -19,8 +19,10 @@ public class Player extends Group {
 
     private boolean isPlaying;
     private boolean hasStarted;
-    private boolean hasWon;
-    private boolean hasLost;
+    public boolean hasWon;
+    public boolean hasLost;
+
+    public int score;
 
     Player(Frame frame, KeyCode leftKey, KeyCode rightKey, KeyCode start){
         this.frame= frame;
@@ -58,6 +60,7 @@ public class Player extends Group {
             Brick brick = itr.next();
             if(ball.getLayoutBounds().intersects(brick.getLayoutBounds())){
                 itr.remove();
+                increaseScore();
                 getChildren().remove(brick);
                 if(ball.getCenterX() >= brick.getX() && ball.getCenterX() <= brick.getX() + brick.getWidth()){
                     ball.currentYSpeed*=-1;
@@ -88,9 +91,13 @@ public class Player extends Group {
             if(currentBrick.getX() == brick.getX() || currentBrick.getY() == brick.getY()){
                 getChildren().remove(currentBrick);
                 itr.remove();
+                increaseScore();
             }
         }
 
+    }
+    private void increaseScore(){
+        score+= 1;
     }
 
     void addMultipleBalls(Ball ball){
@@ -103,7 +110,7 @@ public class Player extends Group {
             getChildren().add(newBall);
         }
     }
-    public void play(){
+    public int play(){
         if(KeyManager.getkeystate(startKey)){
             isPlaying= true;
         }
@@ -133,6 +140,8 @@ public class Player extends Group {
 
         moveStick();
 
+        System.out.println(score);
+        return score;
     }
 
     private void moveStick(){
