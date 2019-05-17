@@ -1,7 +1,5 @@
 package BreakBreaks;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -52,6 +50,7 @@ public class Config {
     //Ball
     public static double ballRadius= 7;
     public static Color ballColor= Color.BLACK;
+    public static double maxSpeed= 7;
 
     //Fonts
     public static Font HemiHeadButtons = Font.loadFont("file:Fonts\\hemi head bd.ttf",18);

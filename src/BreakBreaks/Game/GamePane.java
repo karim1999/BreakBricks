@@ -1,10 +1,8 @@
 package BreakBreaks.Game;
 
 import BreakBreaks.Config;
-import BreakBreaks.Interface.MainMenuPane;
 import javafx.animation.AnimationTimer;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
@@ -15,9 +13,6 @@ public class GamePane extends Pane {
     private Stick stick;
     private ArrayList<Brick> bricks= new ArrayList<>();
     private boolean start;
-    private double maxSpeed= 10;
-    private double currentXSpeed;
-    private double currentYSpeed;
 
     public GamePane() {
 
@@ -29,8 +24,6 @@ public class GamePane extends Pane {
     }
 
     private void initializeGame(){
-        currentXSpeed= 0;
-        currentYSpeed= 0;
         this.getChildren().clear();
         bricks.clear();
         stick= new Stick(Config.screenWidth/2 - Config.stickWidth/2, Config.screenHeight - Config.stickHeight);
@@ -49,8 +42,6 @@ public class GamePane extends Pane {
             if(e.getCode() == KeyCode.RIGHT)
                 stick.setMovingRight(true);
             if(e.getCode() == KeyCode.SPACE){
-//                ball.setCenterX(250);
-//                ball.setCenterY(473);
                 start= true;
             }
         });
@@ -72,43 +63,43 @@ public class GamePane extends Pane {
     }
 
     private void checkBallStickCollision(Ball ball, Stick stick){
-        double x= maxSpeed;
-        double y= -maxSpeed;
+        double x= Config.maxSpeed;
+        double y= -Config.maxSpeed;
         if(ball.getLayoutBounds().intersects(stick.getLayoutBounds())){
             double difference= stick.getX() + stick.getWidth()/2 - ball.getCenterX();
             if(difference > 0){
                 double ratio= difference/(stick.getWidth());
-                currentXSpeed= -x*ratio;
-                currentYSpeed= y*(1-ratio);
+                ball.currentXSpeed= -x*ratio;
+                ball.currentYSpeed= y*(1-ratio);
 
             }else if(difference < 0){
                 double ratio= -difference/(stick.getWidth());
-                currentXSpeed= x*ratio;
-                currentYSpeed= y*(1-ratio);
+                ball.currentXSpeed= x*ratio;
+                ball.currentYSpeed= y*(1-ratio);
             }else{
-                currentXSpeed= 0;
-                currentYSpeed= y;
+                ball.currentXSpeed= 0;
+                ball.currentYSpeed= y;
             }
         }
     }
     private void checkBallLimitsCollision(Ball ball){
-        if(currentXSpeed >0){
+        if(ball.currentXSpeed >0){
             if(Config.screenWidth <= ball.getCenterX() + ball.getRadius()){
-                currentXSpeed*=-1;
+                ball.currentXSpeed*=-1;
             }
         }else{
             if(0 >= ball.getCenterX() - ball.getRadius()){
-                currentXSpeed*=-1;
+                ball.currentXSpeed*=-1;
             }
         }
-        if(currentYSpeed >0){
+        if(ball.currentYSpeed >0){
             if(Config.screenHeight <= ball.getCenterY() + ball.getRadius()){
                 start= false;
                 initializeGame();
             }
         }else{
             if(0 >= ball.getCenterY() - ball.getRadius()){
-                currentYSpeed*=-1;
+                ball.currentYSpeed*=-1;
             }
         }
     }
@@ -124,14 +115,14 @@ public class GamePane extends Pane {
                     itr.remove();
                     getChildren().remove(brick);
                     if(ball.getCenterX() >= brick.getX() && ball.getCenterX() <= brick.getX() + brick.getWidth()){
-                        currentYSpeed*=-1;
+                        ball.currentYSpeed*=-1;
                     }else if(ball.getCenterY() >= brick.getY() && ball.getCenterY() <= brick.getY() + brick.getHeight()){
-                        currentXSpeed*=-1;
+                        ball.currentXSpeed*=-1;
                     }else{
-                        if(currentYSpeed > 0){
-                            currentXSpeed*=-1;
+                        if(ball.currentYSpeed > 0){
+                            ball.currentXSpeed*=-1;
                         }else{
-                            currentYSpeed*=-1;
+                            ball.currentYSpeed*=-1;
                         }
                     }
                 }else{
@@ -149,8 +140,7 @@ public class GamePane extends Pane {
             checkBallLimitsCollision(ball);
             checkBallBricksCollision(ball, bricks);
 
-            ball.setCenterX(ball.getCenterX() + currentXSpeed);
-            ball.setCenterY(ball.getCenterY() + currentYSpeed);
+            ball.move();
         }
     }
 }
