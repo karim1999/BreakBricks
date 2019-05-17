@@ -53,6 +53,18 @@ public class Config {
     public static Color ballColor= Color.BLACK;
     public static double maxSpeed= 7;
 
+    //Bricks
+    public static double brickWidth= 50;
+    public static double brickHeight= 15;
+    public static double brickNumCols= 10;
+    public static double brickNumRows= 20;
+    public static double uniqueRocksNum= 10;
+
+    //Multiple balls feature
+    public static double numAdditionBalls= 5;
+
+    //Destroy rows and colls feature
+
     //Fonts
     public static Font HemiHeadButtons = Font.loadFont("file:Fonts\\hemi head bd.ttf",18);
     public static Font HemiHeadTitle = Font.loadFont("file:Fonts\\Future TimeSplitters.otf",115);

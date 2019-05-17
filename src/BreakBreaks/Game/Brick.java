@@ -4,6 +4,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Brick extends Rectangle {
+    enum Type {
+        NORMAL,
+        UNIQUE1,
+        UNIQUE2
+    };
+    Type type= Type.NORMAL;
+
     public Brick(double x, double y) {
         setX(x);
         setY(y);
@@ -13,4 +20,9 @@ public class Brick extends Rectangle {
         setArcWidth(5);
         setFill(Color.BROWN);
     }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
 }
+

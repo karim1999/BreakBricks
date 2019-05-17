@@ -32,47 +32,77 @@ public class Player extends Group {
         Ball ball= new Ball(frame.getMinX() + frame.getWidth()/2, frame.getMinY() + frame.getMaxY() - Config.stickHeight - Config.ballRadius);
         balls.add(ball);
 
-        for(int i= 0; i < 10; i++){
-            for (int j = 0; j < 20; j++){
-                Brick brick= new Brick(frame.getMinX() + i*50, frame.getMinY() + j*15);
+        for(int i= 0; i < Config.brickNumCols; i++){
+            for (int j = 0; j < Config.brickNumRows; j++){
+                Brick brick= new Brick(frame.getMinX() + i*Config.brickWidth, frame.getMinY() + j*Config.brickHeight);
                 bricks.add(brick);
                 this.getChildren().add(brick);
             }
+        }
+
+        for (int i= 0; i < bricks.size()/10; i++){
+            double random1= Math.random()*bricks.size();
+            double random2= Math.random()*bricks.size();
+            bricks.get((int)random1).setType(Brick.Type.UNIQUE1);
+            bricks.get((int)random2).setType(Brick.Type.UNIQUE2);
         }
 
         this.getChildren().addAll(ball, stick);
 
     }
     public void checkBallBricksCollision(Ball ball, ArrayList<Brick> bricks){
-        Iterator itr = bricks.iterator();
+        Iterator<Brick> itr = bricks.iterator();
         boolean isIntersected= false;
         while (itr.hasNext())
         {
-            Brick brick = (Brick)itr.next();
+            Brick brick = itr.next();
             if(ball.getLayoutBounds().intersects(brick.getLayoutBounds())){
-                if(!isIntersected){
-                    isIntersected= true;
-                    itr.remove();
-                    getChildren().remove(brick);
-                    if(ball.getCenterX() >= brick.getX() && ball.getCenterX() <= brick.getX() + brick.getWidth()){
-                        ball.currentYSpeed*=-1;
-                    }else if(ball.getCenterY() >= brick.getY() && ball.getCenterY() <= brick.getY() + brick.getHeight()){
+                itr.remove();
+                getChildren().remove(brick);
+                if(ball.getCenterX() >= brick.getX() && ball.getCenterX() <= brick.getX() + brick.getWidth()){
+                    ball.currentYSpeed*=-1;
+                }else if(ball.getCenterY() >= brick.getY() && ball.getCenterY() <= brick.getY() + brick.getHeight()){
+                    ball.currentXSpeed*=-1;
+                }else{
+                    if(ball.currentYSpeed > 0){
                         ball.currentXSpeed*=-1;
                     }else{
-                        if(ball.currentYSpeed > 0){
-                            ball.currentXSpeed*=-1;
-                        }else{
-                            ball.currentYSpeed*=-1;
-                        }
+                        ball.currentYSpeed*=-1;
                     }
-                }else{
-                    break;
                 }
+                if(brick.type == Brick.Type.UNIQUE1){
+                    addMultipleBalls(ball);
+                }else if(brick.type == Brick.Type.UNIQUE2){
+                    destroyCollAndRow(brick);
+                }
+                break;
             }
         }
     }
 
+    private void destroyCollAndRow(Brick brick) {
+        Iterator<Brick> itr = bricks.iterator();
+        while (itr.hasNext())
+        {
+            Brick currentBrick= itr.next();
+            if(currentBrick.getX() == brick.getX() || currentBrick.getY() == brick.getY()){
+                getChildren().remove(currentBrick);
+                itr.remove();
+            }
+        }
 
+    }
+
+    void addMultipleBalls(Ball ball){
+        for (int i= 0; i < Config.numAdditionBalls; i++){
+            Ball newBall= new Ball(ball.getCenterX(), ball.getCenterY());
+            //To avoid moving only in x
+            newBall.currentYSpeed= ((Config.maxSpeed-1) * Math.random()) +1;
+            newBall.currentXSpeed= Config.maxSpeed- newBall.currentYSpeed;
+            balls.add(newBall);
+            getChildren().add(newBall);
+        }
+    }
     public void play(){
         if(KeyManager.getkeystate(startKey)){
             isPlaying= true;
@@ -88,8 +118,14 @@ public class Player extends Group {
         }
 
         for (int i=0; i < balls.size(); i++){
+            if(isPlaying){
+                Ball ball= balls.get(i);
+                ball.checkBallStickCollision(stick);
+                ball.checkBallFrameCollision(frame);
+                checkBallBricksCollision(ball, bricks);
+                ball.move();
+            }
             if (balls.get(i).getCenterY() >= frame.getMaxY()){
-                System.out.println("End Game");
                 getChildren().remove(balls.get(i));
                 balls.remove(i);
             }
@@ -97,21 +133,14 @@ public class Player extends Group {
 
         moveStick();
 
-        if(isPlaying){
-            for (Ball ball : balls){
-                ball.checkBallStickCollision(stick);
-                ball.checkBallFrameCollision(frame);
-                checkBallBricksCollision(ball, bricks);
-                ball.move();
-            }
-        }
     }
 
     private void moveStick(){
         boolean isMovingLeft= KeyManager.getkeystate(leftKey);
         boolean isMovingRight= KeyManager.getkeystate(rightKey);
         double speed= Config.stickSpeed;
-        for (Ball ball: balls){
+        if(balls.size() >= 1){
+            Ball ball= balls.get(0);
             if(isMovingLeft && stick.getX() > frame.getMinX()){
                 if(!isPlaying)
                     ball.setCenterX(ball.getCenterX() - speed);

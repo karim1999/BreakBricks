@@ -49,13 +49,5 @@ public class GamePane extends Pane {
         for (int i=0; i < players.length; i++){
             players[i].play();
         }
-//        stick.move(start, ball);
-//        if(start){
-//            checkBallStickCollision(ball, stick);
-//            checkBallLimitsCollision(ball);
-//            checkBallBricksCollision(ball, bricks);
-//
-//            ball.move();
-//        }
     }
 }
