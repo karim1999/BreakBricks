@@ -4,9 +4,9 @@ import BreakBreaks.Config;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -76,11 +76,10 @@ public class Player extends Group {
             Brick brick = itr.next();
             if(ball.getLayoutBounds().intersects(brick.getLayoutBounds())){
                 itr.remove();
+                Config.ButtonHovering.seek(Duration.ZERO);
                 Config.ButtonHovering.play();
                 increaseScore();
                 getChildren().remove(brick);
-//                double x= brick.getX() + Config.brickWidth/2;
-//                double y= brick.getY() + Config.brickHeight/2;
                 if(ball.getCenterX() >= brick.getX() && ball.getCenterX() <= brick.getX() + brick.getWidth()){
                     ball.currentYSpeed*=-1;
                 }else if(ball.getCenterY() >= brick.getY() && ball.getCenterY() <= brick.getY() + brick.getHeight()){
@@ -93,7 +92,6 @@ public class Player extends Group {
                     }
                 }
                 if(brick.type == Brick.Type.UNIQUE1){
-                    Config.collidingSound.play();
                     addMultipleBalls(ball);
                 }else if(brick.type == Brick.Type.UNIQUE2){
                     destroyCollAndRow(brick);
