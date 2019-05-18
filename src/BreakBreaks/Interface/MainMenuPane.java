@@ -93,8 +93,8 @@ public class MainMenuPane extends Pane {
         });
         startGame.setOnAction(event ->
         {
-            primaryStage.setScene(startGameScene);
             setBackgroundVideo(false);
+            primaryStage.setScene(startGameScene);
         });
 
 
