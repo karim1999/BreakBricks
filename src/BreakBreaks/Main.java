@@ -24,7 +24,6 @@ public class Main extends Application {
         HighestScores highestScores = new HighestScores(primaryStage);
         HighestScoresScene highestScoresScene = new HighestScoresScene(highestScores);
 
-
         MainMenuPane mainMenuPane= new MainMenuPane(primaryStage,gameScene);
         MainMenuScene mainMenuScene= new MainMenuScene(mainMenuPane);
 
@@ -33,10 +32,13 @@ public class Main extends Application {
         //Set Stage
         highestScoresScene.setStage(primaryStage);
         mainMenuScene.setStage(primaryStage);
+        gameScene.setStage(primaryStage);
 
         //SetScene
         highestScoresScene.setMainMenuScene(mainMenuScene);
-        mainMenuScene.setOptionsScene(highestScoresScene);
+        mainMenuScene.setHighScoresScene(highestScoresScene);
+        gameScene.setMainMenuScene(mainMenuScene);
+        mainMenuScene.setGameScene(gameScene);
 
         primaryStage.setScene(mainMenuScene);
         gamePane.requestFocus();

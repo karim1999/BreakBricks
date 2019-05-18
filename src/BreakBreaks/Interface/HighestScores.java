@@ -4,7 +4,6 @@ import BreakBreaks.Config;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 
@@ -26,7 +25,9 @@ public class HighestScores extends Pane {
         double screenWidth= Config.screenWidth;
         double screenHeight= Config.screenHeight;
 
+
         //1. Highest Scores Background
+        this.setStyle("-fx-background-color: transparent;");
         this.getChildren().add(Config.mediaView);
 
         //2. Label Screen Resolution
@@ -42,7 +43,7 @@ public class HighestScores extends Pane {
         backButton.setStyle("-fx-background-color: black;" + "-fx-opacity: 0.7;");
         backButton.setPrefSize(Config.mainMenuButtonWidth,Config.mainMenuButtonHeight);
         backButton.setTextFill(Config.buttonTextColor);
-        backButton.setFont(Config.HemiHeadButtons);
+        backButton.setFont(Config.buttonFont);
         backButton.setTranslateX(Config.backButtonXtranslate);
         backButton.setTranslateY(Config.backButtonYtranslate);
         getChildren().add(backButton);

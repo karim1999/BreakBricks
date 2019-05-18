@@ -3,11 +3,18 @@ package BreakBreaks.Game;
 import BreakBreaks.Config;
 import javafx.scene.Group;
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Player extends Group {
+    enum Status {
+        WINNER,
+        LOSER,
+        PLAYING
+    }
     private Stick stick;
     private ArrayList<Ball> balls= new ArrayList<>();
     private ArrayList<Brick> bricks= new ArrayList<>();
@@ -22,15 +29,15 @@ public class Player extends Group {
     public boolean hasWon;
     public boolean hasLost;
 
-    public int score;
+    public static int score;
 
-    Player(Frame frame, KeyCode leftKey, KeyCode rightKey, KeyCode start){
+    Player(Frame frame, KeyCode leftKey, KeyCode rightKey, KeyCode start, ImagePattern colorFill){
         this.frame= frame;
         this.leftKey = leftKey;
         this.rightKey = rightKey;
         this.startKey= start;
 
-        stick= new Stick( frame.getMinX() + frame.getWidth()/2 - Config.stickWidth/2, frame.getMaxY() - Config.stickHeight);
+        stick= new Stick( frame.getMinX() + frame.getWidth()/2 - Config.stickWidth/2, frame.getMaxY() - Config.stickHeight,colorFill);
         Ball ball= new Ball(frame.getMinX() + frame.getWidth()/2, frame.getMinY() + frame.getMaxY() - Config.stickHeight - Config.ballRadius);
         balls.add(ball);
 
@@ -42,7 +49,7 @@ public class Player extends Group {
             }
         }
 
-        for (int i= 0; i < bricks.size()/10; i++){
+        for (int i= 0; i < 10; i++){
             double random1= Math.random()*bricks.size();
             double random2= Math.random()*bricks.size();
             bricks.get((int)random1).setType(Brick.Type.UNIQUE1);
@@ -110,7 +117,7 @@ public class Player extends Group {
             getChildren().add(newBall);
         }
     }
-    public int play(){
+    public Status play(){
         if(KeyManager.getkeystate(startKey)){
             isPlaying= true;
         }
@@ -118,10 +125,12 @@ public class Player extends Group {
         if(bricks.size() == 0){
             isPlaying = false;
             hasWon= true;
+            return Status.WINNER;
         }
         if(balls.size() == 0){
             isPlaying = false;
             hasLost= true;
+            return Status.LOSER;
         }
 
         for (int i=0; i < balls.size(); i++){
@@ -141,7 +150,7 @@ public class Player extends Group {
         moveStick();
 
         System.out.println(score);
-        return score;
+        return Status.PLAYING;
     }
 
     private void moveStick(){

@@ -1,9 +1,12 @@
 package BreakBreaks;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Font;
 
 import java.io.File;
@@ -40,17 +43,41 @@ public class Config {
 
     public static Color highestScoresTitle = Color.valueOf("#212121");
 
+    //Game
+    public static double scoreIndentation = 25;
+
+    public static Image guideLoading = new Image("file:Assets\\Guide.png");
+    public static ImageView guide = new ImageView(guideLoading);
+
+    public static Image playerOneWinsLoading= new Image("file:Assets\\Player one wins.png");
+    public static ImageView playerOneWins = new ImageView(playerOneWinsLoading);
+
+    public static Image playerTwoWinsLoading= new Image("file:Assets\\Player two wins.png");
+    public static ImageView playerTwoWins = new ImageView(playerTwoWinsLoading);
+
+
+    public static Font scoreFont = Font.loadFont("file:Fonts\\hemi head bd.ttf",18);
+
     //Stick
     public static double stickWidth= 150;
     public static double stickHeight= 15;
     public static double stickArcWidth= 7;
     public static double stickArcHeight= 7;
     public static double stickSpeed= 10;
-    public static Color stickColor= Color.RED;
+    public static Color stickColor= Color.valueOf("#FFAB40");
+
+    //Right Stick
+    public static Image rightStickLoading = new Image("file:Assets\\Right Stick.png");
+    public static ImagePattern rightStickColor= new ImagePattern(rightStickLoading);
+
+    //Left Stick
+    public static Image leftStickLoading = new Image("file:Assets\\Left Stick.png");
+    public static ImagePattern leftStickColor= new ImagePattern(leftStickLoading);
 
     //Ball
-    public static double ballRadius= 7;
-    public static Color ballColor= Color.BLACK;
+    public static double ballRadius= 10;
+    public static Image ballLoading = new Image("file:Assets\\PlanetB.png");
+    public static ImagePattern ballColor = new ImagePattern(ballLoading);
     public static double maxSpeed= 7;
 
     //Bricks
@@ -66,8 +93,8 @@ public class Config {
     //Destroy rows and colls feature
 
     //Fonts
-    public static Font HemiHeadButtons = Font.loadFont("file:Fonts\\hemi head bd.ttf",18);
-    public static Font HemiHeadTitle = Font.loadFont("file:Fonts\\Future TimeSplitters.otf",115);
+    public static Font buttonFont = Font.loadFont("file:Fonts\\hemi head bd.ttf",18);
+    public static Font titleFont = Font.loadFont("file:Fonts\\Future TimeSplitters.otf",115);
 
     public static Font HighestScoresTitleFont= Font.loadFont("file:Fonts\\astron boy.ttf",70);
 

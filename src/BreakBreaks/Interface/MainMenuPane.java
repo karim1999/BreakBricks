@@ -2,6 +2,7 @@ package BreakBreaks.Interface;
 
 
 import BreakBreaks.Config;
+import BreakBreaks.Game.GameScene;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
@@ -25,6 +26,7 @@ import static BreakBreaks.Config.mediaView;
 public class MainMenuPane extends Pane {
     Stage primaryStage;
     HighestScoresScene highestScoresScene;
+    GameScene gameScene;
 
     private int currentItem = 0;
 
@@ -46,7 +48,7 @@ public class MainMenuPane extends Pane {
 
         //3. Title
         Text gameTitle= new Text(Config.mainMenuTitleXtranslate,Config.mainMenuTitleYtranslate,"Break Bricks");
-        gameTitle.setFont(Config.HemiHeadTitle);
+        gameTitle.setFont(Config.titleFont);
 
         //Gradient Color For Title
         Stop[] stops = new Stop[] { new Stop(0, Color.valueOf("#845EC2")), new Stop(1, Color.valueOf("#EEFF41"))};
@@ -61,21 +63,21 @@ public class MainMenuPane extends Pane {
         startGame.setStyle("-fx-background-color: black;" + "-fx-opacity: 0.7;");
         startGame.setPrefSize(Config.mainMenuButtonWidth,Config.mainMenuButtonHeight);
         startGame.setTextFill(Config.buttonTextColor);
-        startGame.setFont(Config.HemiHeadButtons);
+        startGame.setFont(Config.buttonFont);
 
-        //Options
+        //Highest Scores
         Button highestScore = new Button("Highest Scores");
         highestScore.setStyle("-fx-background-color: black;" + "-fx-opacity: 0.7;");
         highestScore.setPrefSize(Config.mainMenuButtonWidth,Config.mainMenuButtonHeight);
         highestScore.setTextFill(Config.buttonTextColor);
-        highestScore.setFont(Config.HemiHeadButtons);
+        highestScore.setFont(Config.buttonFont);
 
         //Exit Button
         Button exit = new Button("Exit");
         exit.setStyle("-fx-background-color: black;" + "-fx-opacity: 0.7;");
         exit.setPrefSize(Config.mainMenuButtonWidth,Config.mainMenuButtonHeight);
         exit.setTextFill(Config.buttonTextColor);
-        exit.setFont(Config.HemiHeadButtons);
+        exit.setFont(Config.buttonFont);
 
         //Actions
         //Start Game Button

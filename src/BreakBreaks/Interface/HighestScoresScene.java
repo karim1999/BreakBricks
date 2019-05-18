@@ -1,12 +1,14 @@
 package BreakBreaks.Interface;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class HighestScoresScene extends Scene {
     HighestScores root;
     public HighestScoresScene(HighestScores root) {
         super(root);
         this.root= root;
+
     }
     public void setStage(Stage primaryStage){
         root.primaryStage= primaryStage;

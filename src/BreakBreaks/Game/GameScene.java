@@ -1,6 +1,8 @@
 package BreakBreaks.Game;
 
+import BreakBreaks.Interface.HighestScoresScene;
 import BreakBreaks.Interface.MainMenuPane;
+import BreakBreaks.Interface.MainMenuScene;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -17,4 +19,10 @@ public class GameScene extends Scene {
         return primaryStage;
     }
 
+    public void setStage(Stage primaryStage){
+        root.primaryStage= primaryStage;
+    }
+    public void setMainMenuScene(MainMenuScene mainMenuScene){
+        root.mainMenuScene = mainMenuScene;
+    }
 }
