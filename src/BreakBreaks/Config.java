@@ -96,6 +96,11 @@ public class Config {
     public static double brickNumRows= 20;
     public static double uniqueRocksNum= 10;
 
+    public static Image normalBrick = new Image("file:Assets\\Normal Brick.png");
+    public static Image addingBallsBrick = new Image("file:Assets\\Unique Brick 1.png");
+    public static Image removingBricks = new Image("file:Assets\\Unique Brick 2.png");
+
+
     //Multiple balls feature
     public static double numAdditionBalls= 5;
 

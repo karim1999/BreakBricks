@@ -19,17 +19,17 @@ public class Brick extends Rectangle {
 
     public Brick(double x, double y) {
 
-        Image normalBrick = new Image("file:Assets\\Brick.png");
-        Image addingBallsBrick = new Image("file:Assets\\Brick Adding Balls.png");
-        Image removingBricks = new Image("file:Assets\\Brick.png");
         setX(x);
         setY(y+ Config.scoreIndentation);
         setWidth(50);
         setHeight(15);
         setArcHeight(5);
         setArcWidth(5);
-        setFill(Color.valueOf("#FF8A65"));
+        setType(type);
+//        setFill(Color.valueOf("#FF8A65"));
+
 //        if (Brick.type == Type.NORMAL) {setFill(new ImagePattern(normalBrick));}
+
 //        setType(Type.UNIQUE1);
 //        if (Brick.type == Type.UNIQUE1) {setFill(new ImagePattern(addingBallsBrick));}
 //        brick.setX(x);
@@ -39,6 +39,18 @@ public class Brick extends Rectangle {
 
     public void setType(Type type) {
         this.type = type;
+        if (type == Type.NORMAL)
+        {
+            setFill(new ImagePattern(Config.normalBrick));
+        }
+        if (type == Type.UNIQUE1)
+        {
+            setFill(new ImagePattern(Config.addingBallsBrick));
+        }
+        if (type == Type.UNIQUE2)
+        {
+            setFill(new ImagePattern(Config.removingBricks));
+        }
     }
 }
 
