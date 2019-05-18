@@ -13,8 +13,8 @@ public class MainMenuScene extends Scene {
     public void setStage(Stage primaryStage){
         root.primaryStage= primaryStage;
     }
-    public void setHighScoresScene(HighestScoresScene highestScoresScene){
-        root.highestScoresScene = highestScoresScene;
+    public void setHighScoresScene(CreditsScene creditsScene){
+        root.creditsScene = creditsScene;
     }
     public void setGameScene(GameScene gameScene){
         root.gameScene= gameScene;
