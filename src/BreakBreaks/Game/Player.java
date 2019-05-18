@@ -77,11 +77,14 @@ public class Player extends Group {
                 itr.remove();
                 increaseScore();
                 getChildren().remove(brick);
+//                double x= brick.getX() + Config.brickWidth/2;
+//                double y= brick.getY() + Config.brickHeight/2;
                 if(ball.getCenterX() >= brick.getX() && ball.getCenterX() <= brick.getX() + brick.getWidth()){
                     ball.currentYSpeed*=-1;
                 }else if(ball.getCenterY() >= brick.getY() && ball.getCenterY() <= brick.getY() + brick.getHeight()){
                     ball.currentXSpeed*=-1;
                 }else{
+                    System.out.println();
                     if(ball.currentYSpeed > 0){
                         ball.currentXSpeed*=-1;
                     }else{
