@@ -2,6 +2,7 @@ package BreakBreaks.Game;
 
 import BreakBreaks.Config;
 import javafx.scene.Group;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -29,7 +30,8 @@ public class Player extends Group {
     public boolean hasWon;
     public boolean hasLost;
 
-    public static int score;
+    public int score;
+    public Label label;
 
     Player(Frame frame, KeyCode leftKey, KeyCode rightKey, KeyCode start, ImagePattern colorFill){
         this.frame= frame;
@@ -56,7 +58,13 @@ public class Player extends Group {
             bricks.get((int)random2).setType(Brick.Type.UNIQUE2);
         }
 
-        this.getChildren().addAll(ball, stick);
+        label = new Label("Score: " + score);
+        label.setFont(Config.scoreFont);
+        label.setTextFill(Color.valueOf("#E3F2FD"));
+        label.setTranslateX(frame.getMinX());
+
+
+        this.getChildren().addAll(ball, stick, label);
 
     }
     public void checkBallBricksCollision(Ball ball, ArrayList<Brick> bricks){
@@ -148,8 +156,7 @@ public class Player extends Group {
         }
 
         moveStick();
-
-        System.out.println(score);
+        label.setText("Score: " + score);
         return Status.PLAYING;
     }
 

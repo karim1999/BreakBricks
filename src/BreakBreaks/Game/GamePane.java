@@ -50,19 +50,6 @@ public class GamePane extends Pane {
         players[0]= new Player(new Frame(0, 0, Config.screenWidth/2, Config.screenHeight), KeyCode.A, KeyCode.D, KeyCode.SPACE,Config.leftStickColor);
         players[1]= new Player(new Frame(Config.screenWidth/2, 0, Config.screenWidth, Config.screenHeight), KeyCode.LEFT, KeyCode.RIGHT, KeyCode.ENTER,Config.rightStickColor);
 
-        //Player One Score Label
-        Label playerOneScore = new Label("Score: " + players[0].score);
-        playerOneScore.setFont(Config.scoreFont);
-        playerOneScore.setTextFill(Color.valueOf("#E3F2FD"));
-        getChildren().add(playerOneScore);
-
-        //Player One Score Label
-        Label playerTwoScore = new Label("Score: " + players[1].score);
-        playerTwoScore.setFont(Config.scoreFont);
-        playerTwoScore.setTextFill(Color.valueOf("#E3F2FD"));
-        playerTwoScore.setTranslateX(Config.screenWidth/2);
-        getChildren().add(playerTwoScore);
-
         guide.setFitHeight(Config.screenHeight);
         guide.setFitWidth(Config.screenWidth);
         getChildren().add(guide);
@@ -104,41 +91,20 @@ public class GamePane extends Pane {
             //You can get the status of each player as well by using hasWon, hasLost data members
             if(!players[i].hasWon && !players[i].hasLost ){
                 players[i].play();
+            }else{
+                if (players[i].hasWon)
+                {
+                    getChildren().add(i == 0 ? Config.playerOneWins : Config.playerTwoWins);
+                }
+                if (players[i].hasLost)
+                {
+                    getChildren().add(i == 0 ? Config.playerTwoWins : Config.playerOneWins);
+                }
+                gameLoop.stop();
+                break;
             }
 
         }
-        if (players[0].hasWon)
-        {
-            getChildren().add(Config.playerOneWins);
-            gameLoop.stop();
-        }
-        if (players[1].hasWon)
-        {
-            getChildren().add(Config.playerTwoWins);
-            gameLoop.stop();
-        }
 
     }
-    public void guideScreenShow()
-    {
-        guide.setFitHeight(Config.screenHeight);
-        guide.setFitWidth(Config.screenWidth);
-        getChildren().add(guide);
-        setOnKeyPressed(event ->
-        {
-            if (event.getCode() == KeyCode.ENTER)
-            {
-                getChildren().remove(guide);
-
-            }
-        });
-    }
-    public void addingLabel(Label playerScore,Player player[],int index,double x, double y)
-    {
-        playerScore = new Label("Score: " + player[index].score);
-        playerScore.setFont(Config.scoreFont);
-        playerScore.setTextFill(Color.valueOf("#E3F2FD"));
-        getChildren().add(playerScore);
-    }
-
 }
