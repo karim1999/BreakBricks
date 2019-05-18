@@ -27,7 +27,7 @@ public class Main extends Application {
         MainMenuPane mainMenuPane= new MainMenuPane(primaryStage,gameScene);
         MainMenuScene mainMenuScene= new MainMenuScene(mainMenuPane);
 
-        //mainMenuPane.backgroundMusic();
+        //mainMenuPane.gameInMusic();
 
         //Set Stage
         creditsScene.setStage(primaryStage);

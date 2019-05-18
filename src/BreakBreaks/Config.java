@@ -36,7 +36,6 @@ public class Config {
     public static Media media2 = new Media(new File(path).toURI().toString());
     public static MediaPlayer winningSound = new MediaPlayer(media2);
 
-
     //Main Menu Game Title
     public static double mainMenuTitleXtranslate = 310;
     public static double mainMenuTitleYtranslate = 150;
@@ -71,7 +70,6 @@ public class Config {
 
     public static Image playerTwoWinsLoading= new Image("file:Assets\\Player two wins.png");
     public static ImageView playerTwoWins = new ImageView(playerTwoWinsLoading);
-
 
     public static Font scoreFont = Font.loadFont("file:Fonts\\hemi head bd.ttf",18);
 
@@ -125,15 +123,22 @@ public class Config {
     public static Color buttonTextColor = Color.valueOf("#FFFF8D");
     public static Color buttonTextColorOnAction = Color.valueOf("#212121");
 
+    public static MediaPlayer backgroundMusic;
+
     public Config(double screenWidth, double screenHeight) {
         //Load data from config file
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
     }
-    public static void setVideo(MediaPlayer mediaPlayer)
+
+    public static MediaPlayer gameInMusic()
     {
+        String backgroundMusicPath= "Sounds\\Fantasy_Game_Background_Looping.wav";
+        Media backgroundMedia= new Media(new File(backgroundMusicPath).toURI().toString());
+        backgroundMusic = new MediaPlayer(backgroundMedia);
+        backgroundMusic.setCycleCount(MediaPlayer.INDEFINITE);
+        return backgroundMusic;
 
     }
-
 
 }

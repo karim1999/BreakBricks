@@ -3,6 +3,7 @@ package BreakBreaks.Game;
 import BreakBreaks.Config;
 import BreakBreaks.Interface.MainMenuScene;
 import javafx.animation.AnimationTimer;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,6 +14,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import static BreakBreaks.Config.guide;
+import static BreakBreaks.Config.mediaView;
+import static BreakBreaks.Interface.MainMenuPane.setBackgroundVideo;
 
 public class GamePane extends Pane {
     private Player[] players;
@@ -21,8 +24,7 @@ public class GamePane extends Pane {
     MainMenuScene mainMenuScene;
 
     AnimationTimer gameLoop;
-    Label playerOne;
-    Label playerTwo;
+
     public GamePane() {
 
         //Background Picture
@@ -92,17 +94,48 @@ public class GamePane extends Pane {
                 {
                     getChildren().add(i == 0 ? Config.playerOneWins : Config.playerTwoWins);
                     Config.winningSound.play();
+                    backButton();
                 }
                 if (players[i].hasLost)
                 {
                     getChildren().add(i == 0 ? Config.playerTwoWins : Config.playerOneWins);
                     Config.winningSound.play();
+                    backButton();
                 }
                 gameLoop.stop();
                 break;
             }
 
         }
+
+    }
+    public void backButton()
+    {
+        Button back= new Button("Main Menu");
+        back.setStyle("-fx-background-color: black;" + "-fx-opacity: 0.7;");
+        back.setPrefSize(Config.mainMenuButtonWidth,Config.mainMenuButtonHeight);
+        back.setTextFill(Config.buttonTextColor);
+        back.setFont(Config.buttonFont);
+        back.setTranslateX(Config.backButtonXtranslate);
+        back.setTranslateY(Config.backButtonYtranslate + 110);
+        getChildren().add(back);
+
+        //Actions
+        back.setOnMouseEntered(event1 -> {
+            back.setStyle("-fx-background-color: #FFFF8D;" + "-fx-opacity: 0.7;");
+            back.setTextFill(Config.buttonTextColorOnAction);
+        });
+        back.setOnMouseExited(event1 -> {
+            back.setStyle("-fx-background-color: black;" + "-fx-opacity: 0.7;");
+            back.setTextFill(Config.buttonTextColor);
+        });
+        back.setOnAction(event ->
+        {
+            primaryStage.setScene(mainMenuScene);
+            setBackgroundVideo(true);
+            Config.gameInMusic().stop();
+        } );
+
 
     }
 }

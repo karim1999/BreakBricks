@@ -26,6 +26,7 @@ public class MainMenuPane extends Pane {
     Stage primaryStage;
     CreditsScene creditsScene;
     GameScene gameScene;
+    MediaPlayer backgroundMusic;
 
     private int currentItem = 0;
 
@@ -95,6 +96,8 @@ public class MainMenuPane extends Pane {
         {
             setBackgroundVideo(false);
             primaryStage.setScene(startGameScene);
+//            gameInMusic().play();
+            Config.gameInMusic().play();
         });
 
 
@@ -248,15 +251,6 @@ public class MainMenuPane extends Pane {
             {
                 backgroundMedia.stop();
             }
-    }
-    public void backgroundMusic()
-    {
-        String backgroundMusicPath= "Sounds\\Chrimstas Track.wav";
-        Media backgroundMedia= new Media(new File(backgroundMusicPath).toURI().toString());
-        MediaPlayer backgroundMusic = new MediaPlayer(backgroundMedia);
-        backgroundMusic.setCycleCount(MediaPlayer.INDEFINITE);
-        backgroundMusic.play();
-
     }
 
 }
