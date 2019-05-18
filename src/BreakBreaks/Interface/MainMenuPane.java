@@ -241,8 +241,8 @@ public class MainMenuPane extends Pane {
     public static void setBackgroundVideo(Boolean check)
     {
 
-//        mediaView.setFitHeight(Config.screenHeight);
-//        mediaView.setFitWidth(Config.screenWidth);
+        mediaView.setFitHeight(Config.screenHeight);
+        mediaView.setFitWidth(Config.screenWidth);
 
         if (check==true)
         {
