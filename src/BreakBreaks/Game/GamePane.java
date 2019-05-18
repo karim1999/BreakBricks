@@ -4,7 +4,6 @@ import BreakBreaks.Config;
 import BreakBreaks.Interface.MainMenuScene;
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -14,7 +13,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import static BreakBreaks.Config.guide;
-import static BreakBreaks.Config.mediaView;
 import static BreakBreaks.Interface.MainMenuPane.setBackgroundVideo;
 
 public class GamePane extends Pane {
@@ -27,6 +25,12 @@ public class GamePane extends Pane {
 
     public GamePane() {
 
+        initializeGame();
+        gameLoop();
+
+    }
+
+    public void initializeGame(){
         //Background Picture
         Image gameBackgroundLoading = new Image("file:Assets\\Cartoon Planet.jpeg");
         ImageView gameBackground = new ImageView(gameBackgroundLoading);
@@ -42,12 +46,6 @@ public class GamePane extends Pane {
         getChildren().add(gameBackground);
         getChildren().add(barrier);
 
-        initializeGame();
-        gameLoop();
-
-    }
-
-    public void initializeGame(){
         players= new Player[2];
         players[0]= new Player(new Frame(0, 0, Config.screenWidth/2, Config.screenHeight), KeyCode.A, KeyCode.D, KeyCode.SPACE,Config.leftStickColor);
         players[1]= new Player(new Frame(Config.screenWidth/2, 0, Config.screenWidth, Config.screenHeight), KeyCode.LEFT, KeyCode.RIGHT, KeyCode.ENTER,Config.rightStickColor);
@@ -62,7 +60,7 @@ public class GamePane extends Pane {
         getChildren().add(guide);
 
         setOnKeyPressed(e->{
-            if (!(e.getCode() == KeyCode.ENTER && getChildren().remove(guide))){
+            if (!(getChildren().remove(guide))){
                 KeyManager.setkeystate(e.getCode(), true);
             }
         });
@@ -131,6 +129,10 @@ public class GamePane extends Pane {
         });
         back.setOnAction(event ->
         {
+            getChildren().clear();
+            initializeGame();
+            gameLoop();
+            requestFocus();
             primaryStage.setScene(mainMenuScene);
             setBackgroundVideo(true);
             Config.gameInMusic().stop();

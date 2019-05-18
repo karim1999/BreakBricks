@@ -92,6 +92,7 @@ public class MainMenuPane extends Pane {
             startGame.setTextFill(Config.buttonTextColor);
             ButtonHovering.stop();
         });
+
         startGame.setOnAction(event ->
         {
             setBackgroundVideo(false);
