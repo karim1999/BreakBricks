@@ -6,7 +6,6 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -76,8 +75,6 @@ public class Player extends Group {
             Brick brick = itr.next();
             if(ball.getLayoutBounds().intersects(brick.getLayoutBounds())){
                 itr.remove();
-                Config.ButtonHovering.seek(Duration.ZERO);
-                Config.ButtonHovering.play();
                 increaseScore();
                 getChildren().remove(brick);
                 if(ball.getCenterX() >= brick.getX() && ball.getCenterX() <= brick.getX() + brick.getWidth()){
