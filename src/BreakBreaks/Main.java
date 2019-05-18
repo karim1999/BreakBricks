@@ -2,10 +2,10 @@ package BreakBreaks;
 
 import BreakBreaks.Game.GamePane;
 import BreakBreaks.Game.GameScene;
-import BreakBreaks.Interface.MainMenuPane;
-import BreakBreaks.Interface.MainMenuScene;
 import BreakBreaks.Interface.HighestScores;
 import BreakBreaks.Interface.HighestScoresScene;
+import BreakBreaks.Interface.MainMenuPane;
+import BreakBreaks.Interface.MainMenuScene;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -19,7 +19,7 @@ public class Main extends Application {
         primaryStage.setTitle(Config.gameTitle);
 
         GamePane gamePane= new GamePane();
-        GameScene gameScene= new GameScene(gamePane, primaryStage, Config.screenWidth, Config.screenHeight);
+        GameScene gameScene= new GameScene(gamePane, primaryStage);
 
         HighestScores highestScores = new HighestScores(primaryStage);
         HighestScoresScene highestScoresScene = new HighestScoresScene(highestScores);

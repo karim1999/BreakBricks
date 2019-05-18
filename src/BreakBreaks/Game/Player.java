@@ -84,7 +84,6 @@ public class Player extends Group {
                 }else if(ball.getCenterY() >= brick.getY() && ball.getCenterY() <= brick.getY() + brick.getHeight()){
                     ball.currentXSpeed*=-1;
                 }else{
-                    System.out.println();
                     if(ball.currentYSpeed > 0){
                         ball.currentXSpeed*=-1;
                     }else{
