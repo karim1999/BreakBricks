@@ -3,11 +3,15 @@ package BreakBreaks.Interface;
 import BreakBreaks.Config;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-public class HighestScores extends Pane {
+public class CreditsPane extends Pane {
 
     Stage primaryStage;
     MainMenuScene mainMenuScene;
@@ -19,7 +23,7 @@ public class HighestScores extends Pane {
     private double MenuItemHeight = 50;
 
 
-    public HighestScores(Stage primaryStage) {
+    public CreditsPane(Stage primaryStage) {
         this.setPrefSize(Config.screenWidth, Config.screenHeight);
 
         double screenWidth= Config.screenWidth;
@@ -28,16 +32,45 @@ public class HighestScores extends Pane {
 
         //1. Highest Scores Background
         this.setStyle("-fx-background-color: transparent;");
-        this.getChildren().add(Config.mediaView);
+        Config.creditsBackground.setFitWidth(Config.screenWidth);
+        Config.creditsBackground.setFitHeight(Config.screenHeight);
+        this.getChildren().add(Config.creditsBackground);
 
         //2. Label Screen Resolution
-        Label screenResolution = new Label("Highest Scores");
+        Label screenResolution = new Label("Credits");
         screenResolution.setFont(Config.HighestScoresTitleFont);
         screenResolution.setTextFill(Config.highestScoresTitle);
         screenResolution.setTranslateX(Config.highestScoresTitleXtranslate);
         screenResolution.setTranslateY(Config.highestScoresTitleYtranslate);
         getChildren().add(screenResolution);
 
+        //Texts
+        Text text = new Text("The game is made by:");
+        Text text1 = new Text("Mostafa Saad");
+        Text text2 = new Text("Karim Mahamoud");
+        Text text3 = new Text("Nour El Din");
+        Text text4 = new Text("Ahmad Abd Elaziz");
+
+        text.setFont(Config.creditsFont);
+        text1.setFont(Config.creditsFont);
+        text2.setFont(Config.creditsFont);
+        text3.setFont(Config.creditsFont);
+        text4.setFont(Config.creditsFont);
+
+        text.setFill(Color.WHITE);
+        text1.setFill(Color.WHITE);
+        text2.setFill(Color.WHITE);
+        text3.setFill(Color.WHITE);
+        text4.setFill(Color.WHITE);
+
+        VBox vBox = new VBox();
+        vBox.setSpacing(20);
+        vBox.getChildren().addAll(text,text1,text2,text3,text4);
+
+        vBox.setTranslateX(80);
+        vBox.setTranslateY(150);
+
+        getChildren().add(vBox);
 
         Button backButton= new Button("Back");
         backButton.setStyle("-fx-background-color: black;" + "-fx-opacity: 0.7;");

@@ -24,7 +24,7 @@ import static BreakBreaks.Config.*;
 
 public class MainMenuPane extends Pane {
     Stage primaryStage;
-    HighestScoresScene highestScoresScene;
+    CreditsScene creditsScene;
     GameScene gameScene;
 
     private int currentItem = 0;
@@ -65,7 +65,7 @@ public class MainMenuPane extends Pane {
         startGame.setFont(Config.buttonFont);
 
         //Highest Scores
-        Button highestScore = new Button("Highest Scores");
+        Button highestScore = new Button("Credits");
         highestScore.setStyle("-fx-background-color: black;" + "-fx-opacity: 0.7;");
         highestScore.setPrefSize(Config.mainMenuButtonWidth,Config.mainMenuButtonHeight);
         highestScore.setTextFill(Config.buttonTextColor);
@@ -111,7 +111,7 @@ public class MainMenuPane extends Pane {
             ButtonHovering.stop();
         });
         highestScore.setOnAction(event -> {
-            primaryStage.setScene(highestScoresScene);
+            primaryStage.setScene(creditsScene);
         });
 
 
@@ -190,7 +190,7 @@ public class MainMenuPane extends Pane {
                     primaryStage.setScene(startGameScene);
                     break;
                 case 2:
-                    primaryStage.setScene(highestScoresScene);
+                    primaryStage.setScene(creditsScene);
                     break;
                 case 3:
                     System.exit(0);

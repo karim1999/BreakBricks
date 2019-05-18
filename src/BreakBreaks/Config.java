@@ -43,14 +43,18 @@ public class Config {
     public static MediaPlayer backgroundMedia = new MediaPlayer(backgroundLoading);
     public static MediaView mediaView = new MediaView(backgroundMedia);
 
-    //Highest Scores
-    public static double highestScoresTitleXtranslate = 310;
+    //Credits
+    public static double highestScoresTitleXtranslate = 350;
     public static double highestScoresTitleYtranslate = 25;
+
+    public static Image image1 = new Image("file:Assets\\Space.png");
+    public static ImageView creditsBackground = new ImageView(image1);
+
 
     public static double backButtonXtranslate = 400;
     public static double backButtonYtranslate = 400;
 
-    public static Color highestScoresTitle = Color.valueOf("#212121");
+    public static Color highestScoresTitle = Color.valueOf("#FFFDE7");
 
     //Game
     public static double scoreIndentation = 25;
@@ -108,6 +112,7 @@ public class Config {
 
     //Fonts
     public static Font buttonFont = Font.loadFont("file:Fonts\\hemi head bd.ttf",18);
+    public static Font creditsFont = Font.loadFont("file:Fonts\\hemi head bd.ttf",25);
     public static Font titleFont = Font.loadFont("file:Fonts\\Future TimeSplitters.otf",115);
 
     public static Font HighestScoresTitleFont= Font.loadFont("file:Fonts\\astron boy.ttf",70);

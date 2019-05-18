@@ -2,8 +2,8 @@ package BreakBreaks;
 
 import BreakBreaks.Game.GamePane;
 import BreakBreaks.Game.GameScene;
-import BreakBreaks.Interface.HighestScores;
-import BreakBreaks.Interface.HighestScoresScene;
+import BreakBreaks.Interface.CreditsPane;
+import BreakBreaks.Interface.CreditsScene;
 import BreakBreaks.Interface.MainMenuPane;
 import BreakBreaks.Interface.MainMenuScene;
 import javafx.application.Application;
@@ -21,8 +21,8 @@ public class Main extends Application {
         GamePane gamePane= new GamePane();
         GameScene gameScene= new GameScene(gamePane, primaryStage);
 
-        HighestScores highestScores = new HighestScores(primaryStage);
-        HighestScoresScene highestScoresScene = new HighestScoresScene(highestScores);
+        CreditsPane creditsPane = new CreditsPane(primaryStage);
+        CreditsScene creditsScene = new CreditsScene(creditsPane);
 
         MainMenuPane mainMenuPane= new MainMenuPane(primaryStage,gameScene);
         MainMenuScene mainMenuScene= new MainMenuScene(mainMenuPane);
@@ -30,13 +30,13 @@ public class Main extends Application {
         //mainMenuPane.backgroundMusic();
 
         //Set Stage
-        highestScoresScene.setStage(primaryStage);
+        creditsScene.setStage(primaryStage);
         mainMenuScene.setStage(primaryStage);
         gameScene.setStage(primaryStage);
 
         //SetScene
-        highestScoresScene.setMainMenuScene(mainMenuScene);
-        mainMenuScene.setHighScoresScene(highestScoresScene);
+        creditsScene.setMainMenuScene(mainMenuScene);
+        mainMenuScene.setHighScoresScene(creditsScene);
         gameScene.setMainMenuScene(mainMenuScene);
         mainMenuScene.setGameScene(gameScene);
 
