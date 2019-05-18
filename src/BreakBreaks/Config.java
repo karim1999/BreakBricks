@@ -24,6 +24,15 @@ public class Config {
     public static double menuBoxXtranslation = 400;
     public static double menuBoxYtranslation = 230;
 
+    public static String path = "Sounds\\Button sound.wav";
+    public static Media media = new Media(new File(path).toURI().toString());
+    public static MediaPlayer ButtonHovering = new MediaPlayer(media);
+
+    public static String path1 = "Sounds\\Unique.wav";
+    public static Media media1 = new Media(new File(path).toURI().toString());
+    public static MediaPlayer collidingSound = new MediaPlayer(media);
+
+
     //Main Menu Game Title
     public static double mainMenuTitleXtranslate = 310;
     public static double mainMenuTitleYtranslate = 150;

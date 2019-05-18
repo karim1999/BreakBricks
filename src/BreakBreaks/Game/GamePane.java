@@ -50,27 +50,28 @@ public class GamePane extends Pane {
         players[0]= new Player(new Frame(0, 0, Config.screenWidth/2, Config.screenHeight), KeyCode.A, KeyCode.D, KeyCode.SPACE,Config.leftStickColor);
         players[1]= new Player(new Frame(Config.screenWidth/2, 0, Config.screenWidth, Config.screenHeight), KeyCode.LEFT, KeyCode.RIGHT, KeyCode.ENTER,Config.rightStickColor);
 
+
+        for (int i=0; i < players.length; i++){
+            getChildren().add(players[i]);
+        }
+
         guide.setFitHeight(Config.screenHeight);
         guide.setFitWidth(Config.screenWidth);
         getChildren().add(guide);
 
         setOnKeyPressed(e->{
 
+            KeyManager.setkeystate(e.getCode(), true);
+
             if (e.getCode() == KeyCode.ENTER)
                     {
                         getChildren().remove(guide);
                     }
-
-            KeyManager.setkeystate(e.getCode(), true);
-        }
+                }
         );
         setOnKeyReleased(e->{
             KeyManager.setkeystate(e.getCode(), false);
         });
-
-        for (int i=0; i < players.length; i++){
-            getChildren().add(players[i]);
-        }
 
     }
     public void gameLoop(){

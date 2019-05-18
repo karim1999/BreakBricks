@@ -20,8 +20,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
-import static BreakBreaks.Config.backgroundMedia;
-import static BreakBreaks.Config.mediaView;
+import static BreakBreaks.Config.*;
 
 public class MainMenuPane extends Pane {
     Stage primaryStage;
@@ -42,9 +41,9 @@ public class MainMenuPane extends Pane {
         getChildren().add(mediaView);
 
         //Uploading Sounds
-        String path = "Sounds\\Button sound.wav";
-        Media media = new Media(new File(path).toURI().toString());
-        MediaPlayer ButtonHovering = new MediaPlayer(media);
+//        String path = "Sounds\\Button sound.wav";
+//        Media media = new Media(new File(path).toURI().toString());
+//        MediaPlayer ButtonHovering = new MediaPlayer(media);
 
         //3. Title
         Text gameTitle= new Text(Config.mainMenuTitleXtranslate,Config.mainMenuTitleYtranslate,"Break Bricks");

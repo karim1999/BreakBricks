@@ -4,6 +4,7 @@ import BreakBreaks.Config;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 
@@ -76,6 +77,7 @@ public class Player extends Group {
             if(ball.getLayoutBounds().intersects(brick.getLayoutBounds())){
                 itr.remove();
                 increaseScore();
+                Config.ButtonHovering.play();
                 getChildren().remove(brick);
 //                double x= brick.getX() + Config.brickWidth/2;
 //                double y= brick.getY() + Config.brickHeight/2;
@@ -92,6 +94,7 @@ public class Player extends Group {
                 }
                 if(brick.type == Brick.Type.UNIQUE1){
                     addMultipleBalls(ball);
+                    Config.collidingSound.play();
                 }else if(brick.type == Brick.Type.UNIQUE2){
                     destroyCollAndRow(brick);
                 }
