@@ -133,9 +133,9 @@ public class GamePane extends Pane {
             initializeGame();
             gameLoop();
             requestFocus();
-            primaryStage.setScene(mainMenuScene);
             setBackgroundVideo(true);
             Config.gameInMusic().stop();
+            primaryStage.setScene(mainMenuScene);
         } );
 
 
