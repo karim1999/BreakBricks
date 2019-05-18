@@ -32,6 +32,10 @@ public class Config {
     public static Media media1 = new Media(new File(path).toURI().toString());
     public static MediaPlayer collidingSound = new MediaPlayer(media);
 
+    public static String path2 = "Sounds\\Applause Crowd Cheering sound effect.wav";
+    public static Media media2 = new Media(new File(path).toURI().toString());
+    public static MediaPlayer winningSound = new MediaPlayer(media2);
+
 
     //Main Menu Game Title
     public static double mainMenuTitleXtranslate = 310;

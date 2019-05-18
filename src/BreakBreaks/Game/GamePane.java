@@ -96,6 +96,7 @@ public class GamePane extends Pane {
                 if (players[i].hasWon)
                 {
                     getChildren().add(i == 0 ? Config.playerOneWins : Config.playerTwoWins);
+                    Config.winningSound.play();
                 }
                 if (players[i].hasLost)
                 {
