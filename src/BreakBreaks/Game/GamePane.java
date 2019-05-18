@@ -60,15 +60,10 @@ public class GamePane extends Pane {
         getChildren().add(guide);
 
         setOnKeyPressed(e->{
-
-            KeyManager.setkeystate(e.getCode(), true);
-
-            if (e.getCode() == KeyCode.ENTER)
-                    {
-                        getChildren().remove(guide);
-                    }
-                }
-        );
+            if (!(e.getCode() == KeyCode.ENTER && getChildren().remove(guide))){
+                KeyManager.setkeystate(e.getCode(), true);
+            }
+        });
         setOnKeyReleased(e->{
             KeyManager.setkeystate(e.getCode(), false);
         });
@@ -101,6 +96,7 @@ public class GamePane extends Pane {
                 if (players[i].hasLost)
                 {
                     getChildren().add(i == 0 ? Config.playerTwoWins : Config.playerOneWins);
+                    Config.winningSound.play();
                 }
                 gameLoop.stop();
                 break;

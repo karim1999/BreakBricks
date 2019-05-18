@@ -43,5 +43,6 @@ public class Main extends Application {
         primaryStage.setScene(mainMenuScene);
         gamePane.requestFocus();
         primaryStage.show();
+        primaryStage.setResizable(false);
     }
 }

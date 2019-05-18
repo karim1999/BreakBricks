@@ -13,7 +13,7 @@ import java.io.File;
 
 public class Config {
     //Screen Properties
-    public static String gameTitle= "Game Name";
+    public static String gameTitle= "Break Bricks";
     public static double screenWidth = 1022;
     public static double screenHeight = 575;
 
